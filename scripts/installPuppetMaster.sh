@@ -7,3 +7,5 @@ sudo service iptables save
 sudo iptables -F
 sudo service iptables save
 sudo puppet master start
+sudo cp /vagrant/puppet_data/site.pp /etc/puppet
+sudo echo "*" > /etc/puppet/autosign.conf 
