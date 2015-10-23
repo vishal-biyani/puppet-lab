@@ -4,3 +4,6 @@ Puppet-lab helps get you started on Puppet quickly without the hassle of install
 
 Once you have the prerequisites installed all you need to do is fire up a simple command:
     vagrant up
+
+
+At the moment it does the following:
