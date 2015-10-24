@@ -6,6 +6,7 @@ sudo iptables -A INPUT -p tcp --dport 8140 -m state --state NEW -j ACCEPT
 sudo service iptables save
 sudo iptables -F
 sudo service iptables save
-sudo puppet master start
-sudo cp /vagrant/puppet_data/site.pp /etc/puppet
+sudo service puppetserver start
+sudo cp /vagrant/puppet_data/site.pp /etc/puppet/manifests
 sudo echo "*" > /etc/puppet/autosign.conf 
+sudo cp -r /vagrant/puppet_data/modules/sudo /etc/puppet/modules
