@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 MASTER_MEMORY=2048
 AGENT_MEMORY=256
 MASTER_INSTANCES=1
-AGENT_INSTANCES=3
+AGENT_INSTANCES=2
 
 PUPPET_SUBNET="192.168.17"
 PUPPET_MASTER_ADDRESS="192.168.17.99"
@@ -15,10 +15,10 @@ PUPPET_MASTER_ADDRESS="192.168.17.99"
 DOMAIN_NAME="pagent.vb.com"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
 	MASTER_INSTANCES.times do |i|
 		config.vm.define "puppet_master" do |pmaster|
 			pmaster.vm.box = "centos_6_3_x86_64"
+			pmaster.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.3-x86_64-v20130101.box"
 			pmaster.vm.network "private_network", ip: "#{PUPPET_MASTER_ADDRESS}"
 			pmaster.vm.hostname = "puppet.learn.com"
 			pmaster.vm.provider :virtualbox do |vb|
@@ -31,6 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	AGENT_INSTANCES.times do |i|
 		config.vm.define "puppet_agent_#{i}" do |pagent|
 			pagent.vm.box = "centos_6_3_x86_64"
+			pagent.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.3-x86_64-v20130101.box"
 			pagent.vm.network "private_network", ip: "#{PUPPET_SUBNET}.#{i+10}"
 			pagent.vm.hostname = "#{i}.#{DOMAIN_NAME}"
 			pagent.vm.provider :virtualbox do |vba|
